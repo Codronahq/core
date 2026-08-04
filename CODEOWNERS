@@ -1,0 +1,10 @@
+# Every file in this repository is owned by the maintainer.
+* @ayushgupta07xx
+
+# Areas that must not change casually.
+/LICENSE                   @ayushgupta07xx
+/packages/design-tokens/   @ayushgupta07xx
+/turbo.json                @ayushgupta07xx
+/pnpm-workspace.yaml       @ayushgupta07xx
+/tsconfig.base.json        @ayushgupta07xx
+/.github/                  @ayushgupta07xx
