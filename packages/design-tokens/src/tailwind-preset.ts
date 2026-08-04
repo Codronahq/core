@@ -27,11 +27,11 @@ const preset: Omit<Config, 'content'> = {
       borderRadius: radius,
       spacing: space,
       transitionDuration: {
-        instant: duration.instant.replace('ms', ''),
-        fast: duration.fast.replace('ms', ''),
-        base: duration.base.replace('ms', ''),
-        slow: duration.slow.replace('ms', ''),
-        climb: duration.climb.replace('ms', ''),
+        instant: duration.instant,
+        fast: duration.fast,
+        base: duration.base,
+        slow: duration.slow,
+        climb: duration.climb,
       },
       transitionTimingFunction: {
         spring: 'cubic-bezier(0.22, 1, 0.36, 1)',
