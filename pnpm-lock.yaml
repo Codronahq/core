@@ -20,6 +20,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@codrona/attribution':
+        specifier: workspace:*
+        version: link:../../packages/attribution
       '@codrona/design-tokens':
         specifier: workspace:*
         version: link:../../packages/design-tokens
@@ -63,6 +66,12 @@ importers:
       typescript-eslint:
         specifier: ^8.0.0
         version: 8.66.0(eslint@9.39.5(jiti@1.21.7))(typescript@5.9.3)
+
+  packages/attribution:
+    devDependencies:
+      typescript:
+        specifier: ^5.5.0
+        version: 5.9.3
 
   packages/design-tokens:
     devDependencies:

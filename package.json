@@ -10,7 +10,9 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "attribution:generate": "node scripts/generate-attribution.mjs",
+    "attribution:check": "node scripts/generate-attribution.mjs && git diff --exit-code ATTRIBUTION.md"
   },
   "devDependencies": {
     "prettier": "^3.3.0",

@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@codrona/attribution": "workspace:*",
     "@codrona/design-tokens": "workspace:*",
     "next": "^16.2.0",
     "react": "^19.0.0",
