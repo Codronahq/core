@@ -1,0 +1,88 @@
+{
+  "$comment": "Canonical attribution data. Edit this file only; ATTRIBUTION.md is generated from it by scripts/generate-attribution.mjs and CI fails if the two diverge. Dispositions are recorded in codrona-docs/LEGAL.md.",
+  "ledgerUrl": "https://github.com/codronahq/docs/blob/main/LEGAL.md",
+  "sources": [
+    {
+      "id": "codenet",
+      "name": "IBM Project CodeNet",
+      "holder": "IBM Research",
+      "licence": "CDLA-Permissive-2.0",
+      "licenceUrl": "https://cdla.dev/permissive-2-0/",
+      "sourceUrl": "https://developer.ibm.com/exchanges/data/all/project-codenet/",
+      "status": "ingested",
+      "role": "Training corpus — submissions and problems from Aizu Online Judge and AtCoder",
+      "notice": "Contains information from IBM Project CodeNet, made available by IBM Research under the Community Data License Agreement – Permissive – Version 2.0.",
+      "conditions": []
+    },
+    {
+      "id": "codeforces",
+      "name": "Codeforces",
+      "holder": "CODEFORCES GLOBAL - FZCO",
+      "licence": "No licence stated; site Terms govern",
+      "licenceUrl": "https://codeforces.com/terms",
+      "sourceUrl": "https://codeforces.com/apiHelp",
+      "status": "ingested",
+      "role": "Training corpus and live integration — submission metadata via the official API",
+      "notice": "Problem, contest and submission metadata retrieved from the official Codeforces API. Codeforces is operated by CODEFORCES GLOBAL - FZCO and is not affiliated with Codrona.",
+      "conditions": [
+        "Problem statements and editorials are never stored or served; every problem reference links to codeforces.com.",
+        "Requests are rate-limited to one per two seconds through a single shared limiter."
+      ]
+    },
+    {
+      "id": "codecontests",
+      "name": "CodeContests",
+      "holder": "Google DeepMind",
+      "licence": "Apache-2.0 (code), CC BY 4.0 (non-code materials)",
+      "licenceUrl": "https://github.com/google-deepmind/code_contests/blob/main/LICENSE",
+      "sourceUrl": "https://github.com/google-deepmind/code_contests",
+      "status": "ingested",
+      "role": "Problem statements, test cases and human solutions — CodeNet-sourced problems only",
+      "notice": "Contains materials from CodeContests by Google DeepMind, used under the Creative Commons Attribution 4.0 International licence. CodeContests is not an official Google product.",
+      "citation": "Li et al., \"Competition-level code generation with AlphaCode\", Science 378(6624), 1092–1097, 2022. doi:10.1126/science.abq1158",
+      "conditions": [
+        "Only problems sourced from IBM Project CodeNet (Aizu, AtCoder) are used.",
+        "Codeforces-sourced and description2code-sourced problems are excluded."
+      ]
+    },
+    {
+      "id": "zerotrac",
+      "name": "LeetCode problem difficulty estimates",
+      "holder": "Shuxin Chen (zerotrac)",
+      "licence": "MIT",
+      "licenceUrl": "https://github.com/zerotrac/leetcode_problem_rating/blob/main/LICENSE",
+      "sourceUrl": "https://github.com/zerotrac/leetcode_problem_rating",
+      "status": "ingested",
+      "role": "LeetCode problem-difficulty mapping",
+      "notice": "LeetCode problem difficulty estimates by Shuxin Chen (zerotrac), used under the MIT licence. Copyright (c) 2021 Shuxin Chen.",
+      "conditions": [
+        "These are community estimates computed by Elo and maximum likelihood estimation, not official LeetCode difficulty, and are labelled as such wherever displayed.",
+        "Weekly contests 1–62 carry no estimate; Codrona's own model is used instead."
+      ]
+    },
+    {
+      "id": "atcoder",
+      "name": "AtCoder",
+      "holder": "AtCoder Inc.",
+      "licence": "Terms of Use, revised 2026-06-29",
+      "licenceUrl": "https://atcoder.jp/tos",
+      "sourceUrl": "https://atcoder.jp",
+      "status": "not-ingested",
+      "role": "Not used as a training corpus",
+      "notice": "AtCoder submission data is not ingested by Codrona. AtCoder Inc. licenses submission data directly to third parties, and the bulk community mirrors carry no AI-training opt-out signal. AtCoder problems reach Codrona only through IBM Project CodeNet, under that dataset's own licence.",
+      "conditions": []
+    },
+    {
+      "id": "kenkoooo",
+      "name": "AtCoder Problems",
+      "holder": "kenkoooo",
+      "licence": "MIT (application code only; no licence stated for data)",
+      "licenceUrl": "https://github.com/kenkoooo/AtCoderProblems",
+      "sourceUrl": "https://github.com/kenkoooo/AtCoderProblems/blob/master/doc/api.md",
+      "status": "not-ingested",
+      "role": "Not used as a training corpus",
+      "notice": "The AtCoder Problems bulk submission dataset is not ingested by Codrona. Where a user connects their own AtCoder handle, their public submission list may be read through this unofficial API at no more than one request per second, as profile data only.",
+      "conditions": []
+    }
+  ]
+}
