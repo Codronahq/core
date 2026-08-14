@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "test": "node --test src/",
     "typecheck": "tsc --noEmit"
   },
   "main": "./src/index.ts",
