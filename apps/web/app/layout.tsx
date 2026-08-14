@@ -27,6 +27,13 @@ export default function RootLayout({
             >
               Attributions and licences
             </Link>
+            {' · '}
+            <Link
+              className="text-content-secondary underline underline-offset-4 hover:text-content-primary"
+              href="/status"
+            >
+              Status and uptime checks
+            </Link>
           </p>
         </footer>
       </body>
