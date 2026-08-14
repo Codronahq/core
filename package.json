@@ -3,6 +3,11 @@
   "private": true,
   "license": "AGPL-3.0-or-later",
   "packageManager": "pnpm@9.12.0",
+  "pnpm": {
+    "overrides": {
+      "nanoid@<3.3.18": ">=3.3.18 <4"
+    }
+  },
   "engines": { "node": ">=20" },
   "scripts": {
     "build": "turbo run build",
