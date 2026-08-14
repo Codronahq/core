@@ -14,9 +14,11 @@
 # so ordinary content growth never trips them.
 #
 # THE ATTRIBUTIONS TOKENS ARE COMPLIANCE, NOT COSMETICS. CDLA-Permissive-2.0
-# obliges the notice to be served to anonymous visitors. If CDLA or CodeNet
-# stops appearing there, that is a licence breach, and this job is the only
-# thing that would notice.
+# obliges the notice to be served to anonymous visitors, and does so in wording
+# it prescribes rather than the abbreviation. Both greps target that sentence.
+# "CDLA" alone appears on the page as the Terms link label, and "CodeNet" as
+# the source name, so either would survive the notice itself being deleted.
+# Case-sensitive deliberately: the wording is not ours to vary.
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 name: Uptime
@@ -52,5 +54,5 @@ jobs:
           echo "status $code, $size bytes"
           [ "$code" = "200" ] || { echo "FAIL: expected 200, got $code"; exit 1; }
           [ "$size" -ge 10000 ] || { echo "FAIL: $size bytes is an error shell, not the page"; exit 1; }
-          grep -qi "CDLA" "$body" || { echo "FAIL: CDLA notice absent - licence obligation unmet"; exit 1; }
-          grep -qi "CodeNet" "$body" || { echo "FAIL: CodeNet attribution absent - licence obligation unmet"; exit 1; }
+          grep -q "Community Data License Agreement" "$body" || { echo "FAIL: CDLA notice absent - licence obligation unmet"; exit 1; }
+          grep -q "IBM Project CodeNet, made available by IBM Research" "$body" || { echo "FAIL: CodeNet notice absent - licence obligation unmet"; exit 1; }
