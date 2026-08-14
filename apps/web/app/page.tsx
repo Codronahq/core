@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import Link from 'next/link';
-import { ratingTiers } from '@codrona/design-tokens';
+import { ratingKey, ratingTiers } from '@codrona/design-tokens';
 
 const PILLARS = [
   {
@@ -35,7 +35,7 @@ function LadderRule() {
       {ratingTiers.map((tier) => (
         <span
           key={tier.id}
-          className={`flex-1 bg-rating-${tier.id.replace(/_/g, '-')}`}
+          className={`flex-1 bg-rating-${ratingKey(tier.id)}`}
         />
       ))}
     </div>

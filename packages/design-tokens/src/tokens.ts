@@ -51,9 +51,27 @@ export function tierForRating(rating: number) {
   return ratingTiers.find((t) => rating >= t.min && rating <= t.max) ?? ratingTiers[0];
 }
 
+/**
+ * Tier id -> Tailwind class fragment.
+ *
+ * Tier ids are underscored (`candidate_master`) while class names are
+ * hyphenated (`bg-rating-candidate-master`), and the safelist in every app is
+ * generated from `Object.keys(rating)`. A call site that builds
+ * `bg-rating-${tier.id}` directly therefore produces a class that is in no
+ * safelist and has no colour behind it: Tailwind purges it, the build stays
+ * green, and the tier renders as nothing. Six of the ten tiers are single
+ * words and would keep working, so the symptom looks like a glitch on some
+ * tiers rather than a broken contract.
+ *
+ * Use this rather than repeating the transform.
+ */
+export function ratingKey(id: RatingTierId): string {
+  return id.replace(/_/g, '-');
+}
+
 /** Flat id -> hex map, for Tailwind and NativeWind consumption. */
 export const rating = Object.fromEntries(
-  ratingTiers.map((t) => [t.id.replace(/_/g, '-'), t.color]),
+  ratingTiers.map((t) => [ratingKey(t.id), t.color]),
 ) as Record<string, string>;
 
 /* ------------------------------------------------------------------ *

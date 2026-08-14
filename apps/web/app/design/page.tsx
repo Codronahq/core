@@ -11,6 +11,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
+  ratingKey,
   ratingTiers,
   tierForRating,
   LEGENDARY_THRESHOLD,
@@ -65,7 +66,7 @@ export default function DesignSystem() {
       <ol className="border-t border-surface-border">
         {ratingTiers.map((tier, i) => {
           const legendary = tier.min >= LEGENDARY_THRESHOLD;
-          const key = tier.id.replace(/_/g, '-');
+          const key = ratingKey(tier.id);
           return (
             <li
               key={tier.id}
@@ -98,7 +99,7 @@ export default function DesignSystem() {
         <ul className="mt-3 flex flex-wrap gap-2">
           {PROBES.map((r) => {
             const tier = tierForRating(r);
-            const key = tier.id.replace(/_/g, '-');
+            const key = ratingKey(tier.id);
             return (
               <li
                 key={r}
