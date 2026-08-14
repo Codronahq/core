@@ -1,0 +1,56 @@
+# Five-minute liveness check on every public endpoint.
+#
+# This is the second half of the always-live guarantee in codrona.md section 7:
+# a static host that never sleeps is the architecture, and this is the evidence.
+# Carried over from Phase 0, where it was specified and never built.
+#
+# IT MUST FAIL LOUDLY. A cron that pings and passes silently is the vacuous-gate
+# class - green forever, watched by nobody, catching nothing. Every check exits
+# non-zero on breach so a red run appears in the Actions tab and in email.
+#
+# STATUS ALONE IS NOT ENOUGH. Vercel can serve 200 with an error shell, so each
+# endpoint also asserts a size floor and a token that must be present. The
+# floors sit far below the measured sizes (15,331 B and 35,812 B on 2026-08-14)
+# so ordinary content growth never trips them.
+#
+# THE ATTRIBUTIONS TOKENS ARE COMPLIANCE, NOT COSMETICS. CDLA-Permissive-2.0
+# obliges the notice to be served to anonymous visitors. If CDLA or CodeNet
+# stops appearing there, that is a licence breach, and this job is the only
+# thing that would notice.
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+name: Uptime
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: uptime
+  cancel-in-progress: false
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Landing page
+        run: |
+          body=$(mktemp)
+          code=$(curl -sS --max-time 20 -o "$body" -w '%{http_code}' https://codrona.vercel.app/)
+          size=$(wc -c < "$body")
+          echo "status $code, $size bytes"
+          [ "$code" = "200" ] || { echo "FAIL: expected 200, got $code"; exit 1; }
+          [ "$size" -ge 5000 ] || { echo "FAIL: $size bytes is an error shell, not the page"; exit 1; }
+          grep -qi "strictly increasing" "$body" || { echo "FAIL: tagline absent"; exit 1; }
+
+      - name: Attributions page
+        run: |
+          body=$(mktemp)
+          code=$(curl -sS --max-time 20 -o "$body" -w '%{http_code}' https://codrona.vercel.app/attributions)
+          size=$(wc -c < "$body")
+          echo "status $code, $size bytes"
+          [ "$code" = "200" ] || { echo "FAIL: expected 200, got $code"; exit 1; }
+          [ "$size" -ge 10000 ] || { echo "FAIL: $size bytes is an error shell, not the page"; exit 1; }
+          grep -qi "CDLA" "$body" || { echo "FAIL: CDLA notice absent - licence obligation unmet"; exit 1; }
+          grep -qi "CodeNet" "$body" || { echo "FAIL: CodeNet attribution absent - licence obligation unmet"; exit 1; }
